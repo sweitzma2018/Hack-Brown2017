@@ -16,14 +16,8 @@ testParsing();
 app.post('/sms', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse();
-    if (req.body.Body == 'hello') {
-        twiml.message('Hi!');
-    } else if(req.body.Body == 'bye') {
-        twiml.message('Goodbye');
-    } else {
-        response = parseMessage(req.body.Body);
-        twiml.message(response);
-    }
+    response = parseMessage(req.body.Body);
+    twiml.message(response);
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
 });
