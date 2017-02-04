@@ -1,13 +1,27 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+var http = require('http'),
+    express = require('express'),
+    twilio = require('twilio'),
+    bodyParser = require('body-parser');
+
 var app = express();
-app.use(bodyParser.urlencoded({extended: false}));
- 
-app.post("/message", function (request, response) {
-  console.log(request.body); 
-  response.send("<Response><Message>Hello</Message></Response>")
+app.use(bodyParser.urlencoded({ extended: true })); 
+
+app.post('/sms', function(req, res) {
+    var twilio = require('twilio');
+    var twiml = new twilio.TwimlResponse();
+    if (req.body.Body == 'hello') {
+        twiml.message('Hi!');
+    } else if(req.body.Body == 'bye') {
+        twiml.message('Goodbye');
+    } else {
+        twiml.message('No Body param match, Twilio sends this in the request to your server.');
+    }
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
 });
- 
-var listener = app.listen(process.env.PORT || 3000, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+
+
+
+http.createServer(app).listen(1337, function () {
+    console.log("Express server listening on port 1337");
 });
