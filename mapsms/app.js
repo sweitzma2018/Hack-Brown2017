@@ -49,6 +49,7 @@ function getDirections(mode,src,dest) {
 
 function getDirectionsHelper(mode,src,dest) {
     return "Take a left until you reach Zeek's vagina."
+    //FILL THIS IN
 }
 
 function testParsing() {
