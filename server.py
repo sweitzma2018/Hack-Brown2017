@@ -28,11 +28,11 @@ def signal_handler(signal, frame):
 
 # Parses the texts from the users
 def parse_message(text):
-    help =  "Request must have the following format:\n"
-    help += "<mode> from <origin> to <destination>\n"
-    help += "  mode: \"drive\", \"walk\"\n"
-    help += "  origin: starting location\n"
-    help += "  destination: ending location"
+    help =  "Request must have the following format:"
+    help += "\n\n<mode> from <origin> to <destination>\n\n"
+    help += " - mode: \"drive\", \"walk\", \"bike\"\n"
+    help += " - origin: starting location\n"
+    help += " - destination: ending location"
 
     regex = '(\w*)\s+[Ff][Rr][Oo][Mm]\s+(.+)\s+[Tt][Oo]\s+(.+)'
     if re.match(regex, text) is not None:
@@ -45,6 +45,8 @@ def parse_message(text):
             return get_directions('driving', src, dest)
         elif mode == 'walk':
             return get_directions('walking', src, dest)
+        elif mode == 'bike':
+            return get_directions('bicycling', src, dest)
         else:
             return help
     else:
@@ -62,7 +64,7 @@ def get_directions(mode, src, dest):
         return handle_error_status(json)
 
     # title to make it look nicer
-    title = 'mapsms\n\n'
+    title = 'mapsms\n' + json['routes'][0]['copyrights'] + '\n\n'
 
     # add an overview to the beginning of the message
     overview = 'OVERVIEW\n'
