@@ -1,0 +1,12 @@
+Google Maps API:
+KEY = AIzaSyCkq49CClP9wIO-ZlkXFbKRRPvVYly4kFE
+
+get directions:
+  [+] https://maps.googleapis.com/maps/api/directions/json?origin={origin>&destination=<dest>&mode=<mode>&key=AIzaSyCkq49CClP9wIO-ZlkXFbKRRPvVYly4kFE
+  [+] https://maps.googleapis.com/maps/api/directions/json?origin=21+Henr+St+Bristol,+UK&destination=Augdon&mode=driving&key=AIzaSyCkq49CClP9wIO-ZlkXFbKRRPvVYly4kFE
+
+
+get picture of map:
+  [+] https://maps.googleapis.com/maps/api/staticmap?parameters
+  [+] https://maps.googleapis.com/maps/api/staticmap?size={500}x{400}
+
